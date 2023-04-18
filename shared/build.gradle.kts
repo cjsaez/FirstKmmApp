@@ -2,7 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("io.realm.kotlin") version "1.7.0"
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+    kotlin("plugin.serialization") version "1.8.10"
 }
 
 kotlin {
@@ -24,19 +24,20 @@ kotlin {
         }
     }
 
+    val ktorVersion = "2.2.4"
+
     sourceSets {
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
-                implementation("io.ktor:ktor-client-core:2.2.4")
-                implementation("io.ktor:ktor-client-cio:2.2.4")
-                implementation("io.ktor:ktor-client-logging:2.2.4")
-
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("io.ktor:ktor-client-cio:$ktorVersion")
+                implementation("io.ktor:ktor-client-logging:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
                 implementation("io.insert-koin:koin-core:3.4.0")
-                implementation("io.insert-koin:koin-ktor:3.4.0")
+//                implementation("io.insert-koin:koin-ktor:3.4.0")
 
                 implementation("io.realm.kotlin:library-base:1.7.0")
             }
