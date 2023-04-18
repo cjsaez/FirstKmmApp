@@ -24,9 +24,6 @@ class CharacterRemoteDataSourceImpl(
                 request = request,
                 typeInfo = typeInfo<CharacterPageDataDto>()
             )
-//            tryMap<CharacterPageDataDto>(response) {
-//                Parser.getModelFromStringJson(it)
-//            }.mapCatching { it.getPage(page) }
             Result.runCatching { response.body }.mapCatching { it.getPage(page) }
         }
 }
