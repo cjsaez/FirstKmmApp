@@ -35,9 +35,12 @@ kotlin {
                 implementation("io.ktor:ktor-client-cio:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+
+                implementation("io.github.microutils:kotlin-logging:2.0.2")
+                implementation("org.slf4j:slf4j-simple:2.0.3")
 
                 implementation("io.insert-koin:koin-core:3.4.0")
-//                implementation("io.insert-koin:koin-ktor:3.4.0")
 
                 implementation("io.realm.kotlin:library-base:1.7.0")
             }

@@ -10,6 +10,11 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.util.*
+import io.ktor.util.reflect.TypeInfo
+import io.ktor.util.reflect.platformType
+import kotlin.reflect.KClass
+import kotlin.reflect.KType
+import kotlin.reflect.typeOf
 
 class KtorRequestPerformerImpl(
     private val httpClient: HttpClient
@@ -18,9 +23,9 @@ class KtorRequestPerformerImpl(
     private suspend fun runEngineRequest(request: UrlRequest): HttpResponse =
         httpClient.request(request.url, request.block)
 
-    override suspend fun performRequest(baseUrl: String, request: Request): Response {
+    override suspend fun <T> performRequest(baseUrl: String, request: Request, typeInfo: TypeInfo): Response<T> {
         val response = runEngineRequest(UrlRequest.from(baseUrl, request))
-        return Response(response.status.value, response.body())
+        return Response(response.status.value, response.body(typeInfo))
     }
 
     private fun Headers.Companion.from(request: Request): HeadersBuilder {

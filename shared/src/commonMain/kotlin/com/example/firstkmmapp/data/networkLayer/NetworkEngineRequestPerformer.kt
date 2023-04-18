@@ -1,5 +1,9 @@
 package com.example.firstkmmapp.data.networkLayer
 
+import io.ktor.util.reflect.TypeInfo
+import kotlin.reflect.KClass
+import kotlin.reflect.KType
+
 /**
  * An interface to abstract the requesting resources to the network implementation
  * for a selected networking engine.
@@ -14,5 +18,5 @@ interface NetworkEngineRequestPerformer {
      *
      * @return a Response class instance with info about the status code and body obtained by the engine response.
      */
-    suspend fun performRequest(baseUrl: String, request: Request): Response
+    suspend fun <T> performRequest(baseUrl: String, request: Request, typeInfo: TypeInfo): Response<T>
 }
